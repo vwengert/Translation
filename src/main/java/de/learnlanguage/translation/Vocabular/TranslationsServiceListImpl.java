@@ -18,7 +18,7 @@ public class TranslationsServiceListImpl implements TranslationService {
 
     private static final List<Translation> list = new ArrayList<>();
 
-    {
+    static {
         list.add(new Translation(1L, "hello", "hello"));
         list.add(new Translation(2L, "welt", "world"));
     }
