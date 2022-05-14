@@ -1,11 +1,14 @@
 package de.learnlanguage.translation.Vocabular;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -33,6 +36,7 @@ class TranslationServiceImplTest {
         when(translationRepository.findAll()).thenReturn(list);
 
         List<Translation> translationList = translationService.getTranslations();
+
         assertEquals(2, translationList.size());
     }
 
@@ -43,6 +47,7 @@ class TranslationServiceImplTest {
 
         translationService.addNewTranslation(new Translation( "third", "dritte" ));
         List<Translation> translationList = translationService.getTranslations();
+
         assertEquals(3, translationList.size());
     }
 
@@ -54,7 +59,22 @@ class TranslationServiceImplTest {
 
         translationService.deleteTranslation(1L);
         List<Translation> translationList = translationService.getTranslations();
+
         assertEquals(1, translationList.size());
+    }
+
+    @Test
+    void throwsOnDeleteWhenIdIsNotThere() {
+        when(translationRepository.existsById(3L)).thenReturn(false);
+
+        Assertions.assertThrows(ResponseStatusException.class, () -> translationService.deleteTranslation(3L));
+    }
+
+    @Test
+    void throwsWhenUpdateIsOnWrongId() {
+        when(translationRepository.findById(3L)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(ResponseStatusException.class, () -> translationService.updateTranslation(3L, "3", "3"));
     }
 
 
