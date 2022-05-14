@@ -22,7 +22,6 @@ public class TranslationServiceImpl implements TranslationService {
 
     @Override
     public List<Translation> getTranslations() {
-        System.out.println("Inside Maria Implementation");
         return translationRepository.findAll();
     }
 

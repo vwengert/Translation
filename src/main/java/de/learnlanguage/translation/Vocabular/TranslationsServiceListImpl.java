@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @ConditionalOnProperty(
@@ -16,12 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 public class TranslationsServiceListImpl implements TranslationService {
 
-    private static final List<Translation> list = new ArrayList<>();
+    private List<Translation> list;
 
-    static {
-        list.add(new Translation(1L, "hello", "hello"));
-        list.add(new Translation(2L, "welt", "world"));
-    }
     @Override
     public List<Translation> getTranslations() {
         return list;
@@ -29,7 +24,7 @@ public class TranslationsServiceListImpl implements TranslationService {
 
     @Override
     public void addNewTranslation(Translation translation) {
-        Long id = 1L;
+        Long id = 0L;
         for(Translation tr : list) {
             id = tr.getId();
             if(translation.getWord().equals(tr.getWord())) {
@@ -55,8 +50,12 @@ public class TranslationsServiceListImpl implements TranslationService {
     public void updateTranslation(Long id, String word, String translation) {
         for(Translation tr : list) {
             if(tr.getId().equals(id)) {
-                tr.setWord(word);
-                tr.setTranslation(translation);
+                if(word != null && word.length() > 0) {
+                    tr.setWord(word);
+                }
+                if(translation != null && translation.length() > 0) {
+                    tr.setTranslation(translation);
+                }
                 return;
             }
         }
