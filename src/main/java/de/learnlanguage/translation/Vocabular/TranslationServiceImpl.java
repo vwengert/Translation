@@ -2,7 +2,9 @@ package de.learnlanguage.translation.Vocabular;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -27,7 +29,7 @@ public class TranslationServiceImpl implements TranslationService {
     @Override
     public void addNewTranslation(Translation translation) {
        if( translationRepository.findTranslationByWord(translation.getWord()).isPresent() ) {
-           throw new IllegalStateException("Word taken");
+           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Word taken");
        }
        translationRepository.save(translation);
     }
@@ -35,7 +37,7 @@ public class TranslationServiceImpl implements TranslationService {
     @Override
     public void deleteTranslation(Long id) {
         if( ! translationRepository.existsById(id) ) {
-            throw new IllegalStateException("Translation with id " + id + " does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Translation with id " + id + " does not exist");
         }
         translationRepository.deleteById(id);
     }
@@ -44,7 +46,7 @@ public class TranslationServiceImpl implements TranslationService {
     @Transactional
     public void updateTranslation(Long id, String word, String translationWord) {
         Translation translation = translationRepository.findById(id).orElseThrow(() ->
-                new IllegalStateException("translation with id " + id + " does not exist"));
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Translation with id " + id + " does not exist"));
         if (word != null && word.length() > 0 && !Objects.equals(translation.getWord(), word)) {
             translation.setWord(word);
         }

@@ -2,9 +2,9 @@ package de.learnlanguage.translation.Vocabular;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.ConditionContext;
-import org.springframework.context.annotation.Conditional;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,6 @@ public class TranslationsServiceListImpl implements TranslationService {
     }
     @Override
     public List<Translation> getTranslations() {
-        System.out.println("Inside List Implementation");
         return list;
     }
 
@@ -35,7 +34,7 @@ public class TranslationsServiceListImpl implements TranslationService {
         for(Translation tr : list) {
             id = tr.getId();
             if(translation.getWord() == tr.getWord()) {
-                throw new IllegalStateException("Word taken");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Word taken");
             }
         }
         translation.setId(id + 1L);
@@ -50,7 +49,7 @@ public class TranslationsServiceListImpl implements TranslationService {
                 return;
             }
         }
-        throw new IllegalStateException("id " + id + " is not in list");
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "id " + id + " is not in list");
     }
 
     @Override
@@ -62,6 +61,6 @@ public class TranslationsServiceListImpl implements TranslationService {
                 return;
             }
         }
-        throw new IllegalStateException("id " + id + " is not in list");
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "id " + id + " is not in list");
     }
 }
