@@ -22,6 +22,7 @@ public class TranslationServiceImpl implements TranslationService {
 
     @Override
     public List<Translation> getTranslations() {
+        translationRepository.doSpezialOperation(); // hier könnte z.B. eine StoredProcedure aufgerufen werden.
         return translationRepository.findAll();
     }
 
