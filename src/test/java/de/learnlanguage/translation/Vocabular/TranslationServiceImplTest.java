@@ -15,17 +15,14 @@ import static org.mockito.Mockito.*;
 
 class TranslationServiceImplTest {
 
-    TranslationServiceImpl translationService;
     @Mock
-    private TranslationRepository translationRepository;
+    private TranslationRepository translationRepository = mock(TranslationRepository.class);
+    TranslationServiceImpl translationService = new TranslationServiceImpl(translationRepository);
 
     List<Translation> list;
 
     @BeforeEach
     void setUp() {
-        translationRepository = mock(TranslationRepository.class);
-        translationService = new TranslationServiceImpl(translationRepository);
-
         list = new ArrayList<>();
         list.add(new Translation(1L, "1", "1"));
         list.add(new Translation(2L, "2", "2"));
