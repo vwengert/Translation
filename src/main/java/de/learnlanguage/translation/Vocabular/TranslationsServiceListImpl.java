@@ -1,21 +1,23 @@
 package de.learnlanguage.translation.Vocabular;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @ConditionalOnProperty(
         value="translation.service.implementation",
         havingValue = "LIST")
 @Service
-@AllArgsConstructor
+@NoArgsConstructor
 public class TranslationsServiceListImpl implements TranslationService {
 
-    private List<Translation> list;
+    protected final List<Translation> list = new ArrayList<>();
 
     @Override
     public List<Translation> getTranslations() {

@@ -1,9 +1,9 @@
 package de.learnlanguage.translation.Vocabular;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,15 +11,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class TranslationsServiceListImplTest {
 
 
-    TranslationsServiceListImpl translationService;
+    TranslationsServiceListImpl translationService = new TranslationsServiceListImpl();
+
 
     @BeforeEach
     void setUp() {
-        List<Translation> translationList = new ArrayList<>();
-        translationList.add(new Translation(1L, "hello", "hallo"));
-        translationList.add(new Translation(2L, "world", "welt"));
 
-        translationService = new TranslationsServiceListImpl(translationList);
+        translationService.list.add(new Translation(1L, "hello", "hallo"));
+        translationService.list.add(new Translation(2L, "world", "welt"));
+    }
+
+    @AfterEach
+    void tearDown() {
+        translationService.list.clear();
     }
 
     @Test
