@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 
 public class TranslationRepositoryImpl implements TranslationRepositoryCustom{
 
-    private RepoBean rB;
+    private final RepoBean rB;
 
     public TranslationRepositoryImpl(RepoBean repoBean) {
         rB = repoBean;
-    };
+    }
 
     @Override
     public void doSpezialOperation() {
