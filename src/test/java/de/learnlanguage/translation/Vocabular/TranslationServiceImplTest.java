@@ -47,6 +47,13 @@ class TranslationServiceImplTest {
     }
 
     @Test
+    void addTranslationWillThrowWhenWordIsTaken() {
+        when(translationRepository.findTranslationByWord("1")).thenReturn(Optional.of(new Translation("1", "1")));
+        assertThrows(ResponseStatusException.class,
+                () -> translationService.addNewTranslation(new Translation("1", "1")));
+    }
+
+    @Test
     void deleteTranslationWillGetReturnListOfOne() {
         list.remove(1);
         when(translationRepository.existsById(1L)).thenReturn(true);
@@ -72,5 +79,18 @@ class TranslationServiceImplTest {
         Assertions.assertThrows(ResponseStatusException.class, () -> translationService.updateTranslation(3L, "3", "3"));
     }
 
+    @Test
+    void updatesTranslationWordOnly() {
+        when(translationRepository.findById(1L)).thenReturn(Optional.of(new Translation("1","1")));
+
+        assertDoesNotThrow( () -> translationService.updateTranslation(1L, "change", null) );
+    }
+
+    @Test
+    void updatesTranslationTranslationOnly() {
+        when(translationRepository.findById(1L)).thenReturn(Optional.of(new Translation("1","1")));
+
+        assertDoesNotThrow( () -> translationService.updateTranslation(1L, null, "change") );
+    }
 
 }
