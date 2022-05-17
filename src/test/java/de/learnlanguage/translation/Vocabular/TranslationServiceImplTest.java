@@ -3,7 +3,6 @@ package de.learnlanguage.translation.Vocabular;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import static org.mockito.Mockito.*;
 
 class TranslationServiceImplTest {
 
-    @Mock
     private TranslationRepository translationRepository = mock(TranslationRepository.class);
     TranslationServiceImpl translationService = new TranslationServiceImpl(translationRepository);
 
