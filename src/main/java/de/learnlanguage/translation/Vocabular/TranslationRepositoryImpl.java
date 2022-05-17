@@ -1,19 +1,15 @@
 package de.learnlanguage.translation.Vocabular;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 public class TranslationRepositoryImpl implements TranslationRepositoryCustom{
 
-    @PersistenceContext
-    private EntityManager em;
-    @Autowired
     private RepoBean rB;
+
+    public TranslationRepositoryImpl(RepoBean repoBean) {
+        rB = repoBean;
+    };
 
     @Override
     public void doSpezialOperation() {
