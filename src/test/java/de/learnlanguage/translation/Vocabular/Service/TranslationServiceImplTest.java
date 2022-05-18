@@ -1,5 +1,7 @@
-package de.learnlanguage.translation.Vocabular;
+package de.learnlanguage.translation.Vocabular.Service;
 
+import de.learnlanguage.translation.Vocabular.Model.Translation;
+import de.learnlanguage.translation.Vocabular.Repository.TranslationRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,14 +12,14 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class TranslationServiceImplTest {
 
-    private TranslationRepository translationRepository = mock(TranslationRepository.class);
-    TranslationServiceImpl translationService = new TranslationServiceImpl(translationRepository);
-
     List<Translation> list;
+    private final TranslationRepository translationRepository = mock(TranslationRepository.class);
+    TranslationServiceImpl translationService = new TranslationServiceImpl(translationRepository);
 
     @BeforeEach
     void setUp() {
@@ -40,7 +42,7 @@ class TranslationServiceImplTest {
         list.add(new Translation("3", "3"));
         when(translationRepository.findAll()).thenReturn(list);
 
-        translationService.addNewTranslation(new Translation( "third", "dritte" ));
+        translationService.addNewTranslation(new Translation("third", "dritte"));
         List<Translation> translationList = translationService.getTranslations();
 
         assertEquals(3, translationList.size());
@@ -81,16 +83,16 @@ class TranslationServiceImplTest {
 
     @Test
     void updatesTranslationWordOnly() {
-        when(translationRepository.findById(1L)).thenReturn(Optional.of(new Translation("1","1")));
+        when(translationRepository.findById(1L)).thenReturn(Optional.of(new Translation("1", "1")));
 
-        assertDoesNotThrow( () -> translationService.updateTranslation(1L, "change", null) );
+        assertDoesNotThrow(() -> translationService.updateTranslation(1L, "change", null));
     }
 
     @Test
     void updatesTranslationTranslationOnly() {
-        when(translationRepository.findById(1L)).thenReturn(Optional.of(new Translation("1","1")));
+        when(translationRepository.findById(1L)).thenReturn(Optional.of(new Translation("1", "1")));
 
-        assertDoesNotThrow( () -> translationService.updateTranslation(1L, null, "change") );
+        assertDoesNotThrow(() -> translationService.updateTranslation(1L, null, "change"));
     }
 
 }

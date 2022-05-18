@@ -2,6 +2,10 @@ package de.learnlanguage.translation.Vocabular;
 
 
 import de.learnlanguage.translation.TranslationApplication;
+import de.learnlanguage.translation.Vocabular.Controller.TranslationController;
+import de.learnlanguage.translation.Vocabular.Model.Translation;
+import de.learnlanguage.translation.Vocabular.Service.TranslationService;
+import de.learnlanguage.translation.Vocabular.Service.TranslationServiceImpl;
 import io.restassured.config.EncoderConfig;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import io.restassured.module.mockmvc.config.RestAssuredMockMvcConfig;
@@ -17,7 +21,7 @@ import static org.mockito.Mockito.*;
 
 
 @SpringBootTest(classes = TranslationApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public abstract class ContractBase{
+public abstract class ContractBase {
     TranslationService translationService = mock(TranslationServiceImpl.class);
     TranslationController translationController = new TranslationController(translationService);
 
@@ -33,7 +37,7 @@ public abstract class ContractBase{
 
         doThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Word taken"))
                 .when(translationService)
-                .addNewTranslation( new Translation(null, "Existiert", "Exists")  );
+                .addNewTranslation(new Translation(null, "Existiert", "Exists"));
     }
 
 }

@@ -11,7 +11,7 @@ Contract.make {
         headers {
             contentType applicationJson()
         }
-        body (
+        body(
                 word: "Neu",
                 translation: "New"
         )

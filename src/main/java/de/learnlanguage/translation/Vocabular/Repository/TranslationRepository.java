@@ -1,5 +1,6 @@
-package de.learnlanguage.translation.Vocabular;
+package de.learnlanguage.translation.Vocabular.Repository;
 
+import de.learnlanguage.translation.Vocabular.Model.Translation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

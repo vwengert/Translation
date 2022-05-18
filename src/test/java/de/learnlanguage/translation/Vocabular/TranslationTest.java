@@ -1,5 +1,6 @@
 package de.learnlanguage.translation.Vocabular;
 
+import de.learnlanguage.translation.Vocabular.Model.Translation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,7 @@ class TranslationTest {
 
     @Test
     void testEqualsFalseIfObjectNotTranslationObject() {
-        assertFalse(translation.equals(new String("noTranslationObject")));
+        assertFalse(translation.equals("noTranslationObject"));
     }
 
 }

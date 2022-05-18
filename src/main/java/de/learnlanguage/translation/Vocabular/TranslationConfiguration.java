@@ -1,5 +1,7 @@
 package de.learnlanguage.translation.Vocabular;
 
+import de.learnlanguage.translation.Vocabular.Model.Translation;
+import de.learnlanguage.translation.Vocabular.Repository.TranslationRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,5 +1,7 @@
-package de.learnlanguage.translation.Vocabular;
+package de.learnlanguage.translation.Vocabular.Service;
 
+import de.learnlanguage.translation.Vocabular.Model.Translation;
+import de.learnlanguage.translation.Vocabular.Repository.TranslationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;

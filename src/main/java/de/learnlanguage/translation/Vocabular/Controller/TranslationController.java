@@ -1,19 +1,11 @@
-package de.learnlanguage.translation.Vocabular;
+package de.learnlanguage.translation.Vocabular.Controller;
 
+import de.learnlanguage.translation.Vocabular.Model.Translation;
+import de.learnlanguage.translation.Vocabular.Service.TranslationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-interface TranslationService {
-    List<Translation> getTranslations();
-
-    void addNewTranslation(Translation translation);
-
-    void deleteTranslation(Long id);
-
-    void updateTranslation(Long id, String word, String translation);
-}
 
 @RestController
 @RequestMapping(path = "api/v1/translation")
@@ -21,11 +13,6 @@ interface TranslationService {
 public class TranslationController {
 
     private final TranslationService translationService;
-
-    @GetMapping
-    public List<Translation> hello() {
-        return translationService.getTranslations();
-    }
 
     @PostMapping
     public void registerNewTranslation(@RequestBody Translation translation) {
