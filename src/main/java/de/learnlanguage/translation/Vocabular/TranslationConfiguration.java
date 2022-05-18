@@ -10,7 +10,7 @@ import java.util.List;
 public class TranslationConfiguration {
 
     @Bean
-    CommandLineRunner commandLineRunner( TranslationRepository repository ) {
+    CommandLineRunner commandLineRunner(TranslationRepository repository) {
         return args -> {
             Translation hello = new Translation("Hallo", "Hello");
             Translation welt = new Translation("Welt", "World");

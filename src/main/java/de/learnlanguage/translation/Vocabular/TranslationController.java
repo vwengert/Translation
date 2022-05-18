@@ -5,6 +5,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+interface TranslationService {
+    List<Translation> getTranslations();
+
+    void addNewTranslation(Translation translation);
+
+    void deleteTranslation(Long id);
+
+    void updateTranslation(Long id, String word, String translation);
+}
+
 @RestController
 @RequestMapping(path = "api/v1/translation")
 @AllArgsConstructor
@@ -36,11 +46,4 @@ public class TranslationController {
     }
 
 
-}
-
-interface TranslationService {
-    List<Translation> getTranslations();
-    void addNewTranslation(Translation translation);
-    void deleteTranslation(Long id);
-    void updateTranslation(Long id, String word, String translation);
 }

@@ -3,7 +3,11 @@ package de.learnlanguage.translation.Vocabular;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
-public class TranslationRepositoryImpl implements TranslationRepositoryCustom{
+interface RepoBean {
+    void getThis();
+}
+
+public class TranslationRepositoryImpl implements TranslationRepositoryCustom {
 
     private final RepoBean rB;
 
@@ -17,12 +21,8 @@ public class TranslationRepositoryImpl implements TranslationRepositoryCustom{
     }
 }
 
-interface RepoBean {
-    void getThis();
-}
-
 @ConditionalOnProperty(
-        value="translation.service.implementation",
+        value = "translation.service.implementation",
         havingValue = "MARIADB")
 @Service
 class RepoBeanMariaImpl implements RepoBean {
@@ -34,7 +34,7 @@ class RepoBeanMariaImpl implements RepoBean {
 }
 
 @ConditionalOnProperty(
-        value="translation.service.implementation",
+        value = "translation.service.implementation",
         havingValue = "LIST",
         matchIfMissing = true)
 @Service

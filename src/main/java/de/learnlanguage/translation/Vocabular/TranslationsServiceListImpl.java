@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ConditionalOnProperty(
-        value="translation.service.implementation",
+        value = "translation.service.implementation",
         havingValue = "LIST")
 @Service
 @NoArgsConstructor
@@ -26,9 +26,9 @@ public class TranslationsServiceListImpl implements TranslationService {
     @Override
     public void addNewTranslation(Translation translation) {
         Long id = 0L;
-        for(Translation tr : list) {
+        for (Translation tr : list) {
             id = tr.getId();
-            if(translation.getWord().equals(tr.getWord())) {
+            if (translation.getWord().equals(tr.getWord())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Word taken");
             }
         }
@@ -38,8 +38,8 @@ public class TranslationsServiceListImpl implements TranslationService {
 
     @Override
     public void deleteTranslation(Long id) {
-        for(Translation translation : list) {
-            if(translation.getId().equals(id)) {
+        for (Translation translation : list) {
+            if (translation.getId().equals(id)) {
                 list.remove(translation);
                 return;
             }
@@ -49,12 +49,12 @@ public class TranslationsServiceListImpl implements TranslationService {
 
     @Override
     public void updateTranslation(Long id, String word, String translation) {
-        for(Translation tr : list) {
-            if(tr.getId().equals(id)) {
-                if(word != null && word.length() > 0) {
+        for (Translation tr : list) {
+            if (tr.getId().equals(id)) {
+                if (word != null && word.length() > 0) {
                     tr.setWord(word);
                 }
-                if(translation != null && translation.length() > 0) {
+                if (translation != null && translation.length() > 0) {
                     tr.setTranslation(translation);
                 }
                 return;

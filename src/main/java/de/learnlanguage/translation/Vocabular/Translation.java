@@ -1,6 +1,9 @@
 package de.learnlanguage.translation.Vocabular;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -45,7 +48,7 @@ public class Translation {
             return false;
         if (obj == this)
             return true;
-        if ( ! (obj instanceof Translation that) )
+        if (!(obj instanceof Translation that))
             return false;
         return this.word.equals(that.word) && this.translation.equals(that.translation);
     }

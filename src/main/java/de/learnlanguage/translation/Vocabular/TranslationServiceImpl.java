@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @ConditionalOnProperty(
-        value="translation.service.implementation",
+        value = "translation.service.implementation",
         havingValue = "MARIADB",
         matchIfMissing = true)
 @Service
@@ -28,15 +28,15 @@ public class TranslationServiceImpl implements TranslationService {
 
     @Override
     public void addNewTranslation(Translation translation) {
-       if( translationRepository.findTranslationByWord(translation.getWord()).isPresent() ) {
-           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Word taken");
-       }
-       translationRepository.save(translation);
+        if (translationRepository.findTranslationByWord(translation.getWord()).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Word taken");
+        }
+        translationRepository.save(translation);
     }
 
     @Override
     public void deleteTranslation(Long id) {
-        if( ! translationRepository.existsById(id) ) {
+        if (!translationRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Translation with id " + id + " does not exist");
         }
         translationRepository.deleteById(id);
