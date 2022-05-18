@@ -7,12 +7,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping(path = "api/v1/translation")
 @AllArgsConstructor
 public class TranslationController {
 
     private final TranslationService translationService;
+
+    @GetMapping
+    public List<Translation> getTranslations() {
+        return translationService.getTranslations();
+    }
 
     @PostMapping
     public void registerNewTranslation(@RequestBody Translation translation) {
