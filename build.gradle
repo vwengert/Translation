@@ -17,7 +17,7 @@ apply plugin: 'spring-cloud-contract'
 
 group = 'de.learnlanguage'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {

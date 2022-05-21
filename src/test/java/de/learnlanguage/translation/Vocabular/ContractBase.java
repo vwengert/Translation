@@ -12,6 +12,7 @@ import io.restassured.module.mockmvc.config.RestAssuredMockMvcConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import static org.mockito.Mockito.*;
 
 
 @SpringBootTest(classes = TranslationApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@TestPropertySource(locations = "classpath:application-test.properties")
 public abstract class ContractBase {
     TranslationService translationService = mock(TranslationServiceImpl.class);
     TranslationController translationController = new TranslationController(translationService);

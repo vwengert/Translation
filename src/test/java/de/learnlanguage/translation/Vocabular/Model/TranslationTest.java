@@ -1,4 +1,4 @@
-package de.learnlanguage.translation.Vocabular;
+package de.learnlanguage.translation.Vocabular.Model;
 
 import de.learnlanguage.translation.Vocabular.Model.Translation;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,4 +1,4 @@
-package de.learnlanguage.translation.Vocabular;
+package de.learnlanguage.translation.Vocabular.Repository;
 
 import de.learnlanguage.translation.Vocabular.Repository.RepoBean;
 import de.learnlanguage.translation.Vocabular.Repository.RepoBeanGenericImpl;

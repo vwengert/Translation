@@ -48,8 +48,9 @@ public class Translation {
             return false;
         if (obj == this)
             return true;
-        if (!(obj instanceof Translation that))
+        if (!(obj instanceof Translation))
             return false;
+        Translation that = (Translation) obj;
         return this.word.equals(that.word) && this.translation.equals(that.translation);
     }
 }
