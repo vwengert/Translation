@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 @SpringBootTest(classes = TranslationApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @TestPropertySource(locations = "classpath:application-test.properties")
 public abstract class ContractBase {
-    TranslationService translationService = mock(TranslationServiceImpl.class);
+    TranslationService translationService = mock(TranslationService.class);
     TranslationController translationController = new TranslationController(translationService);
 
     @BeforeEach

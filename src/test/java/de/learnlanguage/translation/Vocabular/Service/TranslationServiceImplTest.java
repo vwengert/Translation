@@ -17,8 +17,8 @@ import static org.mockito.Mockito.when;
 
 class TranslationServiceImplTest {
 
-    List<Translation> list;
     private final TranslationRepository translationRepository = mock(TranslationRepository.class);
+    List<Translation> list;
     TranslationServiceImpl translationService = new TranslationServiceImpl(translationRepository);
 
     @BeforeEach

@@ -1,9 +1,5 @@
 package de.learnlanguage.translation.Vocabular.Repository;
 
-import de.learnlanguage.translation.Vocabular.Repository.RepoBean;
-import de.learnlanguage.translation.Vocabular.Repository.RepoBeanGenericImpl;
-import de.learnlanguage.translation.Vocabular.Repository.RepoBeanMariaImpl;
-import de.learnlanguage.translation.Vocabular.Repository.TranslationRepositoryImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
