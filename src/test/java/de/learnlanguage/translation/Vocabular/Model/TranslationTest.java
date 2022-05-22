@@ -21,7 +21,7 @@ class TranslationTest {
 
     @UnitTest
     void testEqualsFalseOnNull() {
-        assertNull(translation);
+        assertFalse(translation.equals(null));
     }
 
     @UnitTest
