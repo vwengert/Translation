@@ -5,7 +5,6 @@ import de.learnlanguage.translation.TranslationApplication;
 import de.learnlanguage.translation.Vocabular.Controller.TranslationController;
 import de.learnlanguage.translation.Vocabular.Model.Translation;
 import de.learnlanguage.translation.Vocabular.Service.TranslationService;
-import de.learnlanguage.translation.Vocabular.Service.TranslationServiceImpl;
 import io.restassured.config.EncoderConfig;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import io.restassured.module.mockmvc.config.RestAssuredMockMvcConfig;

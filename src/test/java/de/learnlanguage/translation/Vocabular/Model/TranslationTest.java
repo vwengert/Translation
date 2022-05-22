@@ -1,7 +1,7 @@
 package de.learnlanguage.translation.Vocabular.Model;
 
+import de.learnlanguage.translation.Vocabular.util.UnitTest;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,24 +14,24 @@ class TranslationTest {
         translation = new Translation(1L, "word", "translation");
     }
 
-    @Test
+    @UnitTest
     void testToString() {
         assertEquals("Translation{id=1, word='word', translation='translation'}", translation.toString());
     }
 
-    @Test
+    @UnitTest
     void testEqualsFalseOnNull() {
-        assertFalse(translation.equals(null));
+        assertNull(translation);
     }
 
-    @Test
+    @UnitTest
     void testEqualsTrueIfObjectEqualsItself() {
-        assertTrue(translation.equals(translation));
+        assertEquals(translation, translation);
     }
 
-    @Test
+    @UnitTest
     void testEqualsFalseIfObjectNotTranslationObject() {
-        assertFalse(translation.equals("noTranslationObject"));
+        assertNotEquals("noTranslationObject", translation);
     }
 
 }

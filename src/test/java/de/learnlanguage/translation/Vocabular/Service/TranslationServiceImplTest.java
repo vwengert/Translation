@@ -2,9 +2,9 @@ package de.learnlanguage.translation.Vocabular.Service;
 
 import de.learnlanguage.translation.Vocabular.Model.Translation;
 import de.learnlanguage.translation.Vocabular.Repository.TranslationRepository;
+import de.learnlanguage.translation.Vocabular.util.UnitTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ class TranslationServiceImplTest {
         list.add(new Translation(2L, "2", "2"));
     }
 
-    @Test
+    @UnitTest
     void getTranslationsReturnsListOfTwo() {
         when(translationRepository.findAll()).thenReturn(list);
 
@@ -37,7 +37,7 @@ class TranslationServiceImplTest {
         assertEquals(2, translationList.size());
     }
 
-    @Test
+    @UnitTest
     void addTranslationWillGetReturnsListOfThree() {
         list.add(new Translation("3", "3"));
         when(translationRepository.findAll()).thenReturn(list);
@@ -48,14 +48,14 @@ class TranslationServiceImplTest {
         assertEquals(3, translationList.size());
     }
 
-    @Test
+    @UnitTest
     void addTranslationWillThrowWhenWordIsTaken() {
         when(translationRepository.findTranslationByWord("1")).thenReturn(Optional.of(new Translation("1", "1")));
         assertThrows(ResponseStatusException.class,
                 () -> translationService.addNewTranslation(new Translation("1", "1")));
     }
 
-    @Test
+    @UnitTest
     void deleteTranslationWillGetReturnListOfOne() {
         list.remove(1);
         when(translationRepository.existsById(1L)).thenReturn(true);
@@ -67,28 +67,28 @@ class TranslationServiceImplTest {
         assertEquals(1, translationList.size());
     }
 
-    @Test
+    @UnitTest
     void throwsOnDeleteWhenIdIsNotThere() {
         when(translationRepository.existsById(3L)).thenReturn(false);
 
         Assertions.assertThrows(ResponseStatusException.class, () -> translationService.deleteTranslation(3L));
     }
 
-    @Test
+    @UnitTest
     void throwsWhenUpdateIsOnWrongId() {
         when(translationRepository.findById(3L)).thenReturn(Optional.empty());
 
         Assertions.assertThrows(ResponseStatusException.class, () -> translationService.updateTranslation(3L, "3", "3"));
     }
 
-    @Test
+    @UnitTest
     void updatesTranslationWordOnly() {
         when(translationRepository.findById(1L)).thenReturn(Optional.of(new Translation("1", "1")));
 
         assertDoesNotThrow(() -> translationService.updateTranslation(1L, "change", null));
     }
 
-    @Test
+    @UnitTest
     void updatesTranslationTranslationOnly() {
         when(translationRepository.findById(1L)).thenReturn(Optional.of(new Translation("1", "1")));
 

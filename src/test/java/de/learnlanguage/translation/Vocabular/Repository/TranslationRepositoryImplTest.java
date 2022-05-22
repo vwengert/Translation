@@ -1,8 +1,8 @@
 package de.learnlanguage.translation.Vocabular.Repository;
 
+import de.learnlanguage.translation.Vocabular.util.UnitTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -23,7 +23,7 @@ class TranslationRepositoryImplTest {
         System.setOut(originalOut);
     }
 
-    @Test
+    @UnitTest
     void doSpezialOperationOnGenericImpl() {
         RepoBean repoBean = new RepoBeanGenericImpl();
         TranslationRepositoryImpl translationRepository = new TranslationRepositoryImpl(repoBean);
@@ -31,7 +31,7 @@ class TranslationRepositoryImplTest {
         assertEquals("Version Generic", outContent.toString().trim());
     }
 
-    @Test
+    @UnitTest
     void doSpezialOperationOnMariaImpl() {
         RepoBean repoBean = new RepoBeanMariaImpl();
         TranslationRepositoryImpl translationRepository = new TranslationRepositoryImpl(repoBean);
