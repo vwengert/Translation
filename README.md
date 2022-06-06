@@ -2,7 +2,6 @@
 Translation Service sample
 
 
-[![Build Status](http://bertolux.dynv6.net:8153/buildStatus/icon?job=Translationservice)](http://bertolux.dynv6.net:8153/job/Translationservice/)
 [![License](https://img.shields.io/github/license/vwengert/Translation)](https://github.com/vwengert/Translation/blob/main/LICENSE)
 
 
